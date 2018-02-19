@@ -1,0 +1,15 @@
+<h2>Edit Stock: <%= @stock.ticker %></h2>
+
+<div class="new_stock_header">
+  <h2>Update Form</h2>
+
+  <%= form_for(@stock) do |f| %>
+  
+    <%= render(:partial => 'form', :locals => {:f => f})  %>
+
+  <div class="form-buttons" style="text-align: left !important;">
+    <%= f.submit('Update Stock') %>
+  </div>
+
+  <% end %>
+</div>

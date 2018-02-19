@@ -1,0 +1,146 @@
+<div class="container">
+  <h3>Portfolio: <span style="color: green;"><%= @account.account_name %></span></h3>
+  <p>Account ID: <strong><%= @account.id %></strong></p>
+  <p>Expected <%= @date %> Income: <span style="color: green;"><%= number_to_currency(@account.send(@m)) %></span></p>
+  <button class="btn-success btn-sm">
+    <%= link_to 'Edit', edit_account_path(@account), {:class => 'account_links'} %>
+  </button>
+  <button class="btn-success btn-sm" >
+    <%= link_to 'Add Stock', new_stock_path, {:class => 'account_links'} %>
+  </button>
+    <button class="btn-danger btn-sm" style="margin-bottom: 20px;">
+    <%= link_to 'Delete', delete_account_path(@account), {:class => 'account_links'} %>
+  </button>
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Shares</th>
+      <th>Account</th>
+      <th>Ex-Date</th>
+      <th>Pay Date</th>
+      <th>Expected Income</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+    <tr>
+    <% case @date %>
+    <% when 'January' %>
+      <% if stock.january_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.january_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'February' %>
+      <% if stock.february_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.february_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'March' %>
+      <% if stock.march_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.march_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'April' %>
+      <% if stock.april_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.april_income, :precision => 2) %></td>
+      <% end %>   
+      <% when 'May' %>
+      <% if stock.may_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.may_income, :precision => 2) %></td>
+      <% end %>    
+      <% when 'June' %>
+      <% if stock.june_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.june_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'July' %>
+      <% if stock.july_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.july_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'August' %>
+      <% if stock.august_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.august_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'September' %>
+      <% if stock.septermber_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.septermber_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'October' %>
+      <% if stock.october_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.october_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'November' %>
+      <% if stock.novemeber_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.novemeber_income, :precision => 2) %></td>
+      <% end %>
+      <% when 'December' %>
+      <% if stock.december_income > 0 %>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= stock.account.account_name %></td>
+        <td><%= stock.ex_date %></td>
+        <td></td>
+        <td><%= number_to_currency(stock.december_income, :precision => 2) %></td>
+      <% end %>
+    <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+    
+  </div>

@@ -1,0 +1,13 @@
+<%= form_for(@stock, :method => 'delete') do |f| %>
+
+  <p>Are you sure you want to delete this stock?</p>
+
+  <p>Ticker: <%= f.object.ticker %></p>
+
+  <%= f.submit('Delete Stock') %>
+
+<% end %>
+
+
+
+

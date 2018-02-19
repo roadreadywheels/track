@@ -1,0 +1,13 @@
+<div class="new_stock_header">
+  <h2>Edit Account Form</h2>
+
+  <%= form_for(@account) do |f| %>
+  
+    <%= render(:partial => 'form', :locals => {:f => f})  %>
+
+  <div class="form-buttons" style="text-align: left !important;">
+    <%= f.submit('New Account') %>
+  </div>
+
+  <% end %>
+</div>

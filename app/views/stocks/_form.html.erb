@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>Ticker:</th>
+    <td><%= f.text_field(:ticker) %></td>
+  </tr>
+  <tr>
+    <th>Account:</th>
+    <td><%= f.collection_select(:account_id, Account.all, :id, :account_name, prompt: true) %></td>
+  </tr>
+  <tr>
+    <th># of Shares:</th>
+    <td><%= f.text_field(:shares) %></td>
+  </tr>
+</table>

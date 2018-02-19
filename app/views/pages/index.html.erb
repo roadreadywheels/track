@@ -1,0 +1,79 @@
+<div style="padding-bottom: 30px;">
+  <%= flash[:notice] %>
+</div>
+
+<div>
+  <h1 class="header">Welcome litte fishy.</h1>
+
+  <p class="header-subtext">
+    This dashboard will give you a detailed display of your current stocks. When they go X and the estimated monthly cash-flow provided by these specific stocks. Click on <em>"View Monthly Calendar"</em> to get a breakdown per month of your income and which stocks are producing it.
+    <em>Feel free to adjust stock quantities as you add or subtract from your position.</em>
+  </p>
+</div>
+
+<button type="button" class="btn btn-success">
+  <%= link_to('Add New Stock', new_stock_path, :class => 'new_stock_class') %> 
+</button>
+
+<button type="button" class="btn btn-success">
+  <%= link_to('Add New Account', new_account_path, :class => 'new_stock_class') %> 
+</button>
+
+<button type="button" class="btn btn-success">
+  <%= link_to('View Account Details', accounts_path, :class => 'new_stock_class') %> 
+</button>
+
+<button type="button" class="btn btn-danger">
+  <%= link_to('Bulk Upload', bulk_upload_stocks_path, :class => 'account_links') %> 
+</button>
+
+<div class="alert alert-info" role="alert" style="margin-top: 20px;">
+  <strong>Expected <%= @date %> Income: </strong> <%= number_to_currency(@monthly_income) %>
+</div>
+
+<div class="alert alert-success" role="alert" style="margin-top: 20px;">
+  <strong>Expected Yearly Income: </strong> <%= number_to_currency(@income) %>
+</div>
+
+<%= form_tag(pages_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search ticker.." %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<div class="homepage-table">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Shares</th>
+      <th>Dividend %</th>
+      <th>Account</th>
+      <th>Expected Total Income</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% unless @stocks.nil? %>
+      <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.shares %></td>
+        <td><%= number_to_percentage((stock.dividend_yield * 100), :precision => 2) %></td>
+        <td><%= stock.account.account_name %></td> 
+        <% if stock.yearly_income == 0 %>
+          <td><strong>No Current Dividend</strong></td>
+        <% else %>
+          <td><%= number_to_currency(stock.yearly_income) %></td>
+        <% end %>
+        <td class="actions">
+          <%= link_to('News', stock_path(stock)) %>
+          <%= link_to('Edit', edit_stock_path(stock)) %>
+          <%= link_to('View', stock_path(stock)) %>
+          <%= link_to('Delete', delete_stock_path(stock)) %>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>    
+  </tbody>
+  </table>
+</div>

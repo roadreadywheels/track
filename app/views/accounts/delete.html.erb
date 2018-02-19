@@ -1,0 +1,12 @@
+<%= form_for(@account, :method => 'delete') do |f| %>
+
+  <p>Are you sure you want to delete this account?</p>
+
+  <p>Account Name: <%= f.object.account_name %></p>
+
+  <%= f.submit('Delete Account') %>
+
+<% end %>
+
+
+
