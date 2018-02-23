@@ -10,6 +10,7 @@ class Stock < ApplicationRecord
 
   scope :sorted, lambda { order("dividend_yield ASC") }
 
+
   ### Import File ###
 
   def self.import(file)

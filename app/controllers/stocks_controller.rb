@@ -4,6 +4,7 @@ class StocksController < ApplicationController
   before_action :find_stock, :only => [:show, :edit, :update, :delete, :destroy]
   before_action :find_date, :only => [:new]
   before_action :set_month, :only => [:show]
+  before_action :get_news, :only => [:show]
 
   def index
     unless Stock.last.nil? && Account.last.nil?
@@ -92,7 +93,12 @@ class StocksController < ApplicationController
 
   def get_news
     @stock = Stock.find(params[:id])
-   # @news = Stock.grab_news
+    @news = HTTParty.get("https://api.iextrading.com/1.0/stock/#{@stock.ticker}/news/last/1")
+    if @news.nil?
+      @news = ""
+    else
+      @news
+    end
   end
 
 end

@@ -21,6 +21,8 @@ gem 'httparty', '~> 0.15.6'
 gem 'whenever', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'clearance', '~> 1.16', '>= 1.16.1'
+gem 'whenever', require: false
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -5,7 +5,12 @@
   <div class="row">
     <div class="col-sm-6">
       <h4>News: </h4>
-
+      <p><em>Below is the most recent news article on <strong><%= @stock.ticker %></strong></em></p>
+      <% @news.each do |article| %>
+        <p><strong>Headline: </strong><%= article['headline'] %></p>
+        <p><strong>Summary:  </strong><%= article['summary'] %> </p>
+        <p><strong>URL: </strong><%= link_to ('Click Here'), article['url'], target: :_blank %>
+      <% end %>
     </div>
 
     <div class="col-sm-6">
